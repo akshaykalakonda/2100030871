@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klef.jfsd.springboot.model.Response;
-import com.klef.jfsd.springboot.service.ExternalAPIServiceImpl;
+import com.klef.jfsd.springboot.service.ExternalAPIService;
+
 
 @RestController
 public class RestAPIController {
 
 	@Autowired
-	private ExternalAPIServiceImpl apiServiceImpl;
+	private ExternalAPIService apiService;
 	
 	@GetMapping("/")
 	public String demo() {
@@ -22,7 +23,7 @@ public class RestAPIController {
 	@GetMapping("numbers/{numberId}")
     public Response getNumbers(@PathVariable String numberId) {
         System.out.println("Received request for numberId: " + numberId);
-        return apiServiceImpl.fetchAndCalculate(numberId);
+        return apiService.fetchAndCalculate(numberId);
     }
 	
 }
